@@ -1,0 +1,65 @@
+<div class="city-edit">
+  <h1>{{title}}</h1>
+  <p *ngIf="this.id && !employee"><em>Loading…</em></p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- Name -->
+  <mat-form-field>
+  <mat-label>Name:</mat-label>
+  <input matInput formControlName="name" required placeholder="Type a Name ">
+  <mat-error *ngFor="let error of getErrors(form.get('name')!,'Name')">
+ {{error}}
+ </mat-error>
+  </mat-form-field>
+  <!-- Lat -->
+  <mat-form-field>
+  <mat-label>Age:</mat-label>
+  <input matInput formControlName="age" required
+ placeholder="Insert Age">
+ <mat-error *ngFor="let error of getErrors(form.get('age')!,
+ 'Age',
+ { 'pattern' : 'must be a number' })">
+ {{error}}
+ </mat-error>
+ </mat-form-field>
+  <mat-form-field>
+  <mat-label>Select Gender...</mat-label>
+  <mat-select id="countryId" formControlName="sex">
+  <mat-option [value]="'F'">Female </mat-option>
+  <mat-option [value]="'M'">Male </mat-option>
+  </mat-select>
+  <mat-error *ngFor="let error of getErrors(form.get('sex')!,'Gender')">
+    {{error}}
+    </mat-error>
+  </mat-form-field>
+  <!-- Lon -->
+  <mat-form-field>
+    <mat-label>Job:</mat-label>
+    <input matInput formControlName="job" required
+    placeholder="Insert Job">
+    <mat-error *ngFor="let error of getErrors(form.get('job')!,'Job')">
+      {{error}}
+      </mat-error>
+    </mat-form-field>
+     <!-- Lon -->
+ <mat-form-field>
+  <mat-label>Salary:</mat-label>
+  <input matInput formControlName="salary" required
+  placeholder="Insert salary">
+  <mat-error *ngFor="let error of getErrors(form.get('salary')!,
+ 'Salary',
+ { 'pattern' : 'must be a number' })">
+ {{error}}
+ </mat-error>
+  </mat-form-field>
+ <div>
+ <button mat-flat-button color="primary"
+ type="submit">
+ {{ this.id ? "Save" : "Create" }}
+ </button>
+ <button mat-flat-button color="secondary"
+ [routerLink]="['/employees']">
+ Cancel
+ </button>
+ </div>
+ </form>
+</div>
