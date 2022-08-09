@@ -8,7 +8,7 @@ The Project is Microservices Application built with Devolopment and Production E
 
 1- Angular(13.0) Client Application 
 
-2- .NETCore(6.0) For Backend Services talking to Each With httpclient Synchronous and RabbitMQ for Asynchronous Messaging 
+2- .NETCore(6.0) For Backend Services talking to Each With httpclientfactory For Synchronous Messaging and RabbitMQ for Asynchronous Messaging 
 
 3- 2 Ocelot Api Gate in front of ingress nginx controller to route to the backend services one of them use authentication and authorization and the other not 
 
