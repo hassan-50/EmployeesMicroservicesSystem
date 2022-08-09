@@ -1,0 +1,38 @@
+{
+    "Routes":[
+      {                        
+        "DownstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/employees",
+        "ServiceName":"employeelist-clusterip-srv",
+        "UpstreamPathTemplate":"/api/e/employees",
+        "UpstreamPathMethod":["Get"]
+      },
+      {                        
+        "DownstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/employees/{id}",
+        "ServiceName":"employeelist-clusterip-srv",
+        "UpstreamPathTemplate":"/api/e/employees/{id}",
+        "UpstreamPathMethod":["Get"]
+      },
+      {                        
+        "DownstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/account/login",
+        "ServiceName":"authentication-clusterip-srv",
+        "UpstreamPathTemplate":"/api/e/account/login",
+        "UpstreamPathMethod":["Post"]
+      },
+      {                        
+        "DownstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/account",
+        "ServiceName":"authentication-clusterip-srv",
+        "UpstreamPathTemplate":"/api/e/account",
+        "UpstreamPathMethod":["Get"]
+      }       
+    ],
+    "GlobalConfiguration": {
+      "ServiceDiscoveryProvider":{
+        "Namespace": "default",
+        "Type": "KubernetesServiceDiscoveryProvider"
+      }
+      }
+}

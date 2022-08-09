@@ -1,0 +1,63 @@
+{
+    "Routes":[
+        {
+            "DownstreamPathTemplate":"/api/Employees",
+            "DownstreamScheme":"https",
+            "DownstreamHostAndPorts":[
+                {
+                    "Host":"localhost",
+                    "Port":6001           
+                }
+            ],
+            "UpstreamPathTemplate":"/api/employees",
+            "UpstreamPathMethod":["Post"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "Role": "RegisteredUser"
+            }            
+        },
+        {
+            "DownstreamPathTemplate":"/api/Employees/{id}",
+            "DownstreamScheme":"https",
+            "DownstreamHostAndPorts":[
+                {
+                    "Host":"localhost",
+                    "Port":6001        
+                }
+            ],
+            "UpstreamPathTemplate":"/api/employees/{id}",
+            "UpstreamPathMethod":["Put","Delete"],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "Role": "Administrator"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/{catchAll}",
+            "DownstreamScheme": "wss",
+            "DownstreamHostAndPorts": [
+              {
+                "Host": "localhost",
+                "Port": 10001
+              }
+            ],
+            "UpstreamPathTemplate": "/gateway/{catchAll}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "Role": "RegisteredUser"
+            }   
+          }
+        
+    ],
+    "GlobalConfiguration":{}
+}

@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-cert
+  namespace: default
+spec:
+  secretName: nginx-tls-secret
+  issuerRef:
+    name: nginx-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - employeeclient.com
+    - employeeservice.com

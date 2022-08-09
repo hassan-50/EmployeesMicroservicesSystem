@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employeecrud-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employeecrudservice
+  template:
+    metadata:
+      labels:
+        app: employeecrudservice
+    spec:
+      containers:
+        - name: employeecrudservice
+          image: hassan970/employeecrudservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employeecrud-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: employeecrudservice
+  ports:
+  - name: employeecrudservice
+    protocol: TCP
+    port: 80
+    targetPort: 80

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secondgateway-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secondgatewayservice
+  template:
+    metadata:
+      labels:
+        app: secondgatewayservice
+    spec:
+      containers:
+        - name: secondgatewayservice
+          image: hassan970/secondgatewayservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secondgateway-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: secondgatewayservice
+  ports:
+  - name: secondgatewayservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secondgateway-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: secondgatewayservice
+  ports:
+    - name: secondgateway-port
+      protocol: TCP
+      port: 9091
+      targetPort: 80

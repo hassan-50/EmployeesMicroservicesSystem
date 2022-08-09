@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employeelist-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employeelistservice
+  template:
+    metadata:
+      labels:
+        app: employeelistservice
+    spec:
+      containers:
+        - name: employeelistservice
+          image: hassan970/employeelistservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employeelist-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: employeelistservice
+  ports:
+  - name: employeelistservice
+    protocol: TCP
+    port: 80
+    targetPort: 80

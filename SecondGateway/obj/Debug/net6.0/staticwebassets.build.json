@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2X7tlYIhbEtMoPLLmN6AhSNcrRSXNCQsGcUyshD85zw=",
+  "Source": "SecondGateway",
+  "BasePath": "_content/SecondGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

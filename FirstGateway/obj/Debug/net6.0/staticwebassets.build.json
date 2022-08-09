@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "L9BMgd7UBQYCS8ZhA1nQn6mbxtGLXUdZ0CIa4kS/KiE=",
+  "Source": "FirstGateway",
+  "BasePath": "_content/FirstGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

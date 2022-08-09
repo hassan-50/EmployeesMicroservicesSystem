@@ -1,0 +1,58 @@
+{
+    "Routes":[
+      {                        
+        "DownstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/employees",
+        "ServiceName":"employee-clusterip-srv",
+        "UpstreamPathTemplate":"/api/employees",
+        "UpstreamPathMethod":["Post"],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+          "Role": "RegisteredUser"
+      } 
+      },
+      {                        
+        "DownstreamScheme": "http",
+        "DownstreamPathTemplate": "/api/employees/{id}",
+        "ServiceName":"employee-clusterip-srv",
+        "UpstreamPathTemplate":"/api/employees/{id}",
+        "UpstreamPathMethod":["Delete","PUT"],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+          "Role": "Administrator"
+      }
+      },
+      {
+        "DownstreamPathTemplate": "/notify",
+        "DownstreamScheme": "ws",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "notification-clusterip-srv",
+            "Port": 80
+          }
+        ],
+        "UpstreamPathTemplate": "/notify",
+        "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
+        "AuthenticationOptions": {
+            "AuthenticationProviderKey": "Bearer",
+            "AllowedScopes": []
+        },
+        "RouteClaimsRequirement": {
+            "Role": "RegisteredUser"
+        }   
+      }
+
+    ],
+    "GlobalConfiguration": {
+      "ServiceDiscoveryProvider":{
+        "Namespace": "default",
+        "Type": "KubernetesServiceDiscoveryProvider"
+      }
+      }
+}

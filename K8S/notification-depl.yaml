@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notificationservice
+  template:
+    metadata:
+      labels:
+        app: notificationservice
+    spec:
+      containers:
+        - name: notificationservice
+          image: hassan970/notificationservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: notificationservice
+  ports:
+  - name: notificationservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
